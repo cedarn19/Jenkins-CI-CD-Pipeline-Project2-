@@ -47,8 +47,8 @@ pipeline {
       steps {
         sh """mvn sonar:sonar \
               -Dsonar.projectKey=JavaWebApp \
-              -Dsonar.host.url=http://172.31.30.34:9000 \
-              -Dsonar.login=da28ea779a086afe349e8ff89e62607618b255d0"""
+              -Dsonar.host.url=http://3.95.175.226:9000 \
+              -Dsonar.login=aae917f51c878cacf64a10e2bcffaa2c369851bd"""
       }
     }
     stage('Upload to Artifactory') {
@@ -94,7 +94,7 @@ pipeline {
   post {
     always {
         echo 'Slack Notifications.'
-        slackSend channel: '#cedric-jenkins-cicd-pipeline-arlerts', //update and provide your channel name
+        slackSend channel: '#arnaud-jenkins-cicd-pipeline', //update and provide your channel name
         color: COLOR_MAP[currentBuild.currentResult],
         message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} \n More info at: ${env.BUILD_URL}"
     }
